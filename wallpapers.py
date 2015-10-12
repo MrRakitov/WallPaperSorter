@@ -3,18 +3,22 @@
 #@URL https://github.com/MrRakitov/WallPaperSorter
 
 import glob
+import imghdr
 
 #Get all file names in current directory
 # Получить имена всех файлов в папке. Внести их в массив.
-filenames = glob.glob('samplepic\*.jpg')
-
-#print all file names of current directory
-#i do not need it yet
-#print (filenames)
+#Use sample folder
+filenames = glob.glob('samplepic\*.jpg') #or use just current folder filenames = glob.glob('*.jpg')
 
 #Print each file name separately.
 for fname in filenames:
-	print (fname)
+  image_type = imghdr.what(fname)
+  if not image_type:
+    print ("error")
+  else:
+    print (image_type)
+  
+  print (fname)
 
 
 # Пройтись по массиву. 
