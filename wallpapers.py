@@ -5,7 +5,8 @@
 import glob
 import imghdr
 import struct
-import os
+import os #For directory creation
+import shutil #for file moving
 
 #I've found this code here http://stackoverflow.com/questions/8032642/how-to-obtain-image-size-using-standard-python-class-without-using-external-lib#
 def get_image_size(fname):
@@ -48,19 +49,20 @@ def dirCreate (directory):
     if not os.path.exists("./sort/"+directory):
         os.makedirs("./sort/"+directory)
 
-#Get all file names in current directory
-#Use sample folder
-filenames = glob.glob('samplepic\*.*') #or use just current folder filenames = glob.glob('*.jpg')
+#Move file(s) to directory
+def fileMove (filename, size):
+    shutil.move(filename, "./sort/" + size)
 
-#Print each file name separately. 
+#Get all file names in current directory
+filenames = glob.glob('*.*') 
+
 #check is file an image or not.
 for fname in filenames:
   image_type = imghdr.what(fname)
   if not image_type:
-    print (fname + " is NOT an image file")
+#    print (fname + " is NOT an image file")
   else:
     size = get_image_size(fname)
-    print (fname + " " + size)
     dirCreate(size)
-    # print (fname)
+    fileMove(fname, size)
 
