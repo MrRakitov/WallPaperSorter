@@ -40,7 +40,7 @@ def get_image_size(fname):
                 return
         else:
             return
-        return width, height
+        return str(width) + "x" + str(height)
 
 
 #Get all file names in current directory
@@ -55,6 +55,6 @@ for fname in filenames:
   if not image_type:
     print (fname + " is NOT an image file")
   else:
-    print (fname + " IS a " + image_type + " file")
+    print (fname + " " + get_image_size(fname))
     # print (fname)
 
