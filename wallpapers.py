@@ -5,6 +5,7 @@
 import glob
 import imghdr
 import struct
+import os
 
 #I've found this code here http://stackoverflow.com/questions/8032642/how-to-obtain-image-size-using-standard-python-class-without-using-external-lib#
 def get_image_size(fname):
@@ -42,9 +43,12 @@ def get_image_size(fname):
             return
         return str(width) + "x" + str(height)
 
+#Directory creation (If not exists)
+def dirCreate (directory):
+    if not os.path.exists("./sort/"+directory):
+        os.makedirs("./sort/"+directory)
 
 #Get all file names in current directory
-# Получить имена всех файлов в папке. Внести их в массив.
 #Use sample folder
 filenames = glob.glob('samplepic\*.*') #or use just current folder filenames = glob.glob('*.jpg')
 
@@ -55,6 +59,8 @@ for fname in filenames:
   if not image_type:
     print (fname + " is NOT an image file")
   else:
-    print (fname + " " + get_image_size(fname))
+    size = get_image_size(fname)
+    print (fname + " " + size)
+    dirCreate(size)
     # print (fname)
 
