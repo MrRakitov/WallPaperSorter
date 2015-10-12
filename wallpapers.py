@@ -59,9 +59,7 @@ filenames = glob.glob('*.*')
 #check is file an image or not.
 for fname in filenames:
   image_type = imghdr.what(fname)
-  if not image_type:
-#    print (fname + " is NOT an image file")
-  else:
+  if image_type:
     size = get_image_size(fname)
     dirCreate(size)
     fileMove(fname, size)
