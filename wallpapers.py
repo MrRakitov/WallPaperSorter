@@ -39,28 +39,48 @@ def get_image_size(fname):
                 fhandle.seek(1, 1)  # Skip `precision' byte.
                 height, width = struct.unpack('>HH', fhandle.read(4))
             except Exception: #IGNORE:W0703
-                return
+                return str("Unknown")
         else:
-            return
+            return str("Unknown")
         return str(width) + "x" + str(height)
 
 #Directory creation (If not exists)
 def dirCreate (directory):
-    if not os.path.exists("./sort/"+directory):
-        os.makedirs("./sort/"+directory)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print ("Making " + directory)
 
 #Move file(s) to directory
-def fileMove (filename, size):
-    shutil.move(filename, "./sort/" + size)
+def fileMove (filename, directory):
+    shutil.move(filename, directory)
+    print ("Moving " + filename + " into " + directory)
+
+#Returns aspect ratio
+def aspectSize (size):
+    if size in ('640x360','720x405','854x480','960x540','1024x576','1280x720','1366x768','1600x900','1920x1080','2048x1152','2560x1440','2880x1620','3200x1800','3840x2160','4096x2304','5120x2880','7680x4320','15360x8640'):
+        aspect = "16x9"
+    elif size in('1280x800','1440x900','1680x1050','1920x1200','2560x1600') :
+        aspect = "16x10"
+    elif size in ('640x480','800x600','1024x768','1152x864','1280x960','1400x1050','1600x1200','2048x1536','3200x2400','4000x3000','6400x4800'):
+        aspect = "4x3"
+    else: 
+        aspect = "other"
+    return aspect
 
 #Get all file names in current directory
 filenames = glob.glob('*.*') 
 
-#check is file an image or not.
+#Check file. Is it an image or not. If yes - proceed.
 for fname in filenames:
   image_type = imghdr.what(fname)
   if image_type:
-    size = get_image_size(fname)
-    dirCreate(size)
-    fileMove(fname, size)
+    size = get_image_size(fname) #Get image size
+    aspect = aspectSize(size) #Get aspect ratio
+    directory = "./sorted/" + aspect + "/" + size
+    #print (fname + " " + size + " " + aspect + directory)
+    dirCreate(directory)
+    fileMove(fname, directory)
+
+  else:
+    print (fname + " is NOT a picture")
 
