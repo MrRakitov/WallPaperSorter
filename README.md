@@ -8,5 +8,3 @@ Easy python wallpaper sorter.
 - If the image size or aspect ratio is unrecognized, it creates a folder "unsort"
 
 I'm using Python 3.5.0 under Windows (64bit). 
-
-13.10.2015 Version 1.2 released.
