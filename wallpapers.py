@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #WallPaperSorter.py
 #@author Rakitov Stanislav
 #@URL https://github.com/MrRakitov/WallPaperSorter
@@ -63,12 +64,12 @@ def aspectSize (size):
         aspect = "16x10"
     elif size in ('640x480','800x600','1024x768','1152x864','1280x960','1400x1050','1600x1200','2048x1536','3200x2400','4000x3000','6400x4800'):
         aspect = "4x3"
-    else: 
+    else:
         aspect = "other"
     return aspect
 
 #Get all file names in current directory
-filenames = glob.glob('*.*') 
+filenames = glob.glob('*.*')
 
 #Check file. Is it an image or not. If yes - proceed.
 for fname in filenames:
