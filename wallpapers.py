@@ -68,8 +68,8 @@ def aspectSize (size):
         aspect = "other"
     return aspect
 
-#Get all file names in current directory
-filenames = glob.glob('*.*')
+#Get all jpeg names in current directory
+filenames = glob.glob('*.jpg')
 
 #Check file. Is it an image or not. If yes - proceed.
 for fname in filenames:
