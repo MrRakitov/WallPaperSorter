@@ -68,20 +68,29 @@ def aspectSize (size):
         aspect = "other"
     return aspect
 
-#Get all jpeg names in current directory
-filenames = glob.glob('*.jpg')
+def proceed(filenames):
+    #Check file. Is it an image or not. If yes - proceed.
+    for fname in filenames:
+        image_type = imghdr.what(fname)
+        if image_type:
+            size = get_image_size(fname) #Get image size
+            aspect = aspectSize(size) #Get aspect ratio
+            directory = "./sorted/" + aspect + "/" + size
+            #print (fname + " " + size + " " + aspect + directory)
+            dirCreate(directory)
+            fileMove(fname, directory)
+        else:
+            print (fname + " is NOT a picture")
 
-#Check file. Is it an image or not. If yes - proceed.
-for fname in filenames:
-  image_type = imghdr.what(fname)
-  if image_type:
-    size = get_image_size(fname) #Get image size
-    aspect = aspectSize(size) #Get aspect ratio
-    directory = "./sorted/" + aspect + "/" + size
-    #print (fname + " " + size + " " + aspect + directory)
-    dirCreate(directory)
-    fileMove(fname, directory)
+def main():
+    #Get all jpeg names in current directory
+    filenames = glob.glob('*.jpg')
+    if not filenames:
+        print("Nothing to do. No jpg files found.")
+        return
+    else:
+        proceed(filenames)
 
-  else:
-    print (fname + " is NOT a picture")
 
+if __name__ == '__main__':
+    main()
