@@ -49,12 +49,14 @@ def get_image_size(fname):
 def dirCreate (directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
-        print ("Making " + directory)
+        #print ("Making " + directory)
+        print("D", end='')
 
 #Move file(s) to directory
 def fileMove (filename, directory):
     shutil.move(filename, directory)
-    print ("Moving " + filename + " into " + directory)
+    #print ("Moving " + filename + " into " + directory)
+    print ("*", end = "")
 
 #Returns aspect ratio
 def aspectSize (size):
