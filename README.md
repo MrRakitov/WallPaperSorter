@@ -16,6 +16,6 @@ wallpapers.py [source_dir] [destination_dir]
 
 - If the image size or aspect ratio is unrecognized, it creates a folder "broke_and_unsort"
 
-I'm using Python 3.5.2 under Windows (64bit). Not tested yet with Linux.
+Python 3.5.2.
 
 I still have some issues with this e.g. moving existing files.
