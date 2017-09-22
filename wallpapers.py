@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import os
 import sys
 import imghdr
@@ -11,8 +12,8 @@ DEFAULT_SORT_DIR = ".sorted"
 #Default directory name for broken and unsorted files
 DEFAULT_BROKE_DIR = "broke_and_unsort"
 
-#Directory delimiter. Windows style.
-DEFAULT_PATH_SEPARATOR = "\\"
+#Directory delimiter. Based on current OS.
+DEFAULT_PATH_SEPARATOR = os.sep
 
 #Default indexes for command line arguments.
 #1 - Working directory
